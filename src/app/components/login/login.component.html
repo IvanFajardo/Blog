@@ -1,0 +1,8 @@
+<h3>Login</h3>
+Username: <input type="text" [(ngModel)] = "username"><br>
+Password: <input type="password" [(ngModel)] = "password"><br>
+<button (click)='validate(username, password)'>Login</button>
+<button (click)='createAccount()'>Register</button>
+
+<app-messages [message]="errmsg"></app-messages>
+
