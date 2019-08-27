@@ -11,18 +11,21 @@ export class HomeComponent implements OnInit {
   constructor(private router: Router) { }
 
   private token;
+  
 
   ngOnInit() {
-    if (localStorage.getItem('token')) {
-      this.token = atob(atob(localStorage.getItem('token')));
-      console.log(this.token);
-    } else {
-      this.router.navigate(['/login']);
+    console.log( atob(localStorage.getItem('token')));
+    this.router.navigate(['dashboard/' + atob(localStorage.getItem('token'))]);
+    if (localStorage.getItem('user_data')){
+      const userData = JSON.parse(atob(localStorage.getItem('user_data')));
+      
     }
+    
   }
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('user_data');
     this.router.navigate(['/login']);
   }
 

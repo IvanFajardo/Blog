@@ -1,0 +1,17 @@
+.crtBtn {
+    margin: 1%;
+    float: left;
+}
+
+.search-blog {
+    margin: 1%;
+    float: right;
+}
+
+.blogItems:hover {
+    background-color: yellow;
+}
+
+.filter-status {
+    margin: 1%;
+}

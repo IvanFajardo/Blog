@@ -1,0 +1,11 @@
+.logout-btn {
+    position: absolute;
+    right: 1%;
+    top: 1%;
+}
+
+.card {
+    margin: 0 auto; /* Added */
+    float: none; /* Added */
+    margin-bottom: 10px; /* Added */
+}

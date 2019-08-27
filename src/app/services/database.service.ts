@@ -1,40 +1,49 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { from } from 'rxjs';
+import { ConfigService } from './config.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DatabaseService {
 
-  baseURL = 'http://localhost:5000/users/';
-  constructor(private http: HttpClient) { }
+  baseUrl: string;
+  config: any;
 
-  config(methodStr, id = '', data) {
-    let options = {
-      method: methodStr ,
-      headers: {
-        'Content-Type': 'application/json'
-      },
-        body: ((methodStr === 'DELETE') ? null : JSON.stringify(data) ) // DELETE request must have a body of null
-    };
-    const result = from(fetch(this.baseURL + id, options));
-    return result.subscribe((response) => response.json);
-
+  constructor(private http: HttpClient, configService: ConfigService) { 
+    this.config = configService.getConfigs();
+    this.baseUrl = this.config.baseUrl;
   }
 
-  add(data) {
-    const method = 'POST';
-    const add = this.config(method, '', data);
+  getHeaders() {
+    const headers = new HttpHeaders();
+    headers.set('Content-type', 'application/json');
+    return headers;
   }
 
-  get() {
-    return this.http.get<any>(this.baseURL);
+  getJson() {
+    const headers = this.getHeaders();
+    return this.http.get(this.baseUrl, { headers } );
+  }
+
+
+  addJson(data) {
+    const headers = this.getHeaders();
+    return this.http.post(this.baseUrl,  data  , { headers });
+  }
+
+  updateJson(data, id) {
+    const headers = this.getHeaders();
+    return this.http.put(this.baseUrl + id,  data  , { headers });
+  }
+
+  deleteJson(id) {
+    const headers = this.getHeaders();
+    return this.http.delete(this.baseUrl + id, { headers });
   }
 }
 
 
 
-
-  
 

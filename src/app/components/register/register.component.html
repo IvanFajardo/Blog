@@ -1,9 +1,70 @@
-<h3>Register</h3><br>
-First Name: <input type="text" [(ngModel)]="fname"><br>
-Middle Name: <input type="text" [(ngModel)]="mname"><br>
-Last Name: <input type="text" [(ngModel)]="lname"><br>
-Email Address: <input type="email" [(ngModel)]="email"><br>
-Username: <input type="text" [(ngModel)]="username"><br>
-Password: <input type="password" [(ngModel)]="password"><br>
-Re-Type Password: <input type="password" [(ngModel)]="repassword"><br>
-<button (click) = validateUser()>Submit</button>
+<div class="bgimage">
+    <div class="container">
+        <div class="d-flex justify-content-center h-100">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Register</h3>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="registerForm">
+                        <div class="input-group form-group">
+                            <input type="text" class="form-control" formControlName="fname" (blur)="checkError('fname','First Name is a required Field!')" placeholder="First Name">
+                            <fa-icon *ngIf="registerForm.get('fname').valid" [icon]="checkCircle"></fa-icon>
+                        </div>
+                        
+                        <div class="input-group form-group">
+                            <input type="text" class="form-control" formControlName="mname" (blur)="checkError('mname','Middle Name is a required Field!')" placeholder="Middle Name">
+                            <fa-icon *ngIf="registerForm.get('mname').valid" [icon]="checkCircle"></fa-icon>
+                        </div>
+
+                        <div class="input-group form-group">
+                            <input type="text" class="form-control" formControlName="lname" (blur)="checkError('lname','Last Name is a required Field!')" placeholder="Last Name">
+                            <fa-icon *ngIf="registerForm.get('lname').valid" [icon]="checkCircle"></fa-icon>
+                        </div>
+
+                        <div class="input-group form-group">
+                            <input type="email" class="form-control" formControlName="email" (blur)="checkError('email','Invalid email!')" placeholder="Email">
+                            <fa-icon *ngIf="registerForm.get('email').valid" [icon]="checkCircle"></fa-icon>
+                        </div>
+                        <br>
+
+                        <div class="input-group form-group">
+                            <input type="text" class="form-control" formControlName="username" (blur)="validateUser()" placeholder="Username">
+                            <fa-icon *ngIf="registerForm.get('username').valid && !hasDuplicate" [icon]="checkCircle"></fa-icon>
+                        </div>
+
+                        <div class="input-group form-group">
+                            <input type="password" class="form-control" formControlName="password" placeholder="Password">
+                            <fa-icon *ngIf="registerForm.get('password').valid" [icon]="checkCircle"></fa-icon>
+                        </div>
+
+                        <div class="input-group form-group">
+                            <input type="password" class="form-control" formControlName="repassword" placeholder="Re-type Password">
+                            <fa-icon *ngIf="(registerForm.get('password').value === registerForm.get('repassword').value)
+                            && registerForm.get('password').valid" [icon]="checkCircle"></fa-icon>
+                        </div>
+
+                        <div class="float-left">
+                        <select formControlName="userType" class="form-control">
+                            <option value="" disabled selected>User Type</option>
+                            <option value="admin">Admin</option>
+                            <option value="user">User</option>
+                        </select>
+                    </div>
+                        <button type="submit" class="btn float-right login_btn" (click) = submitUser() [disabled] = "!registerForm.valid">Submit</button>
+                        
+                    </form>
+                </div> 
+
+                <div class="card-footer">
+                    <div class="d-flex justify-content-center links">
+                        Already have an account?<a [routerLink]="['/login']">Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-messages [message]="message"></app-messages>
+
+
