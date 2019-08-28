@@ -9,11 +9,13 @@ import { ConfigService } from './config.service';
 export class DatabaseService {
 
   baseUrl: string;
+  blogBaseUrl: string;
   config: any;
 
   constructor(private http: HttpClient, configService: ConfigService) { 
     this.config = configService.getConfigs();
     this.baseUrl = this.config.baseUrl;
+    this.blogBaseUrl = this.config.blogBaseUrl;
   }
 
   getHeaders() {
@@ -41,6 +43,21 @@ export class DatabaseService {
   deleteJson(id) {
     const headers = this.getHeaders();
     return this.http.delete(this.baseUrl + id, { headers });
+  }
+
+  addJsonBlog(data) {
+    const headers = this.getHeaders();
+    return this.http.post(this.blogBaseUrl,  data  , { headers });
+  }
+
+  getBlogJson() {
+    const headers = this.getHeaders();
+    return this.http.get(this.blogBaseUrl, { headers } );
+  }
+
+  deleteBlogJson(id) {
+    const headers = this.getHeaders();
+    return this.http.delete(this.blogBaseUrl + id, { headers });
   }
 }
 

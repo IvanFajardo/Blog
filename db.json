@@ -23,11 +23,67 @@
   ],
   "blogs": [
     {
-      "id": 2,
-      "title": "Blog 1",
-      "blog": "Hello World",
-      "date": "08/16/19",
-      "status": true
+      "author": "TypeUser1",
+      "title": "asdasd",
+      "content": "asdasasd",
+      "date": "Aug 28 10:08 AM",
+      "dateApproved": "",
+      "status": "For Approval",
+      "id": 6
+    },
+    {
+      "author": "TypeUser1",
+      "title": "asdasd",
+      "content": "asdasdasd",
+      "date": "Aug 28 11:08 AM",
+      "dateApproved": "",
+      "status": "For Approval",
+      "id": 7
+    },
+    {
+      "author": "TypeUser1",
+      "title": "asdasd",
+      "content": "asdasdasd",
+      "date": "Aug 28 11:08 AM",
+      "dateApproved": "",
+      "status": "For Approval",
+      "id": 8
+    },
+    {
+      "author": "TypeUser1",
+      "title": "asdasd",
+      "content": "asdasdsa",
+      "date": "Aug 28 11:08 AM",
+      "dateApproved": "",
+      "status": "For Approval",
+      "id": 9
+    },
+    {
+      "author": "TypeUser1",
+      "title": "Test1",
+      "content": "asdasasd",
+      "date": "Aug 28 11:08 AM",
+      "dateApproved": "",
+      "status": "For Approval",
+      "id": 10
+    },
+    {
+      "author": "TypeUser1",
+      "title": "asdas",
+      "content": "asdasasd",
+      "date": "Aug 28 11:08 AM",
+      "dateApproved": "",
+      "status": "For Approval",
+      "id": 11
+    },
+    {
+      "author": "TypeUser1",
+      "title": "asdas",
+      "content": "asdasdasd",
+      "date": "Aug 28 11:08 AM",
+      "dateApproved": "",
+      "status": "For Approval",
+      "id": 12
     }
   ]
 }

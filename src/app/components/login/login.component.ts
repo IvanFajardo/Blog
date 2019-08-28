@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
   }
 
   getData(id) {
-    this.databaseService.getJson().subscribe(data => {
+    this.databaseService.getJson().subscribe((data: any) => {
       data.forEach(element => {
         if (element.id === id) {
          localStorage.setItem('user_data', btoa(JSON.stringify(element)));

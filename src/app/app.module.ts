@@ -20,6 +20,7 @@ import { AuthService } from './services/auth/auth.service';
 import { UserHomeComponent } from './components/user-home/user-home.component';
 import { RouterModule } from '@angular/router';
 import { LoginGuard } from './services/login.guard';
+import { ModalBlogComponent } from './components/modal-blog/modal-blog.component';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -33,7 +34,8 @@ export function tokenGetter() {
     HomeComponent,
     MessagesComponent,
     AdminHomeComponent,
-    UserHomeComponent
+    UserHomeComponent,
+    ModalBlogComponent
   ],
   imports: [
     BrowserModule,
