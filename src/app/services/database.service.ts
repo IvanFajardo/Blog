@@ -86,6 +86,8 @@ export class DatabaseService {
     const headers = this.getHeaders();
     return this.http.delete(this.draftBlogBaseUrl + id, { headers });
   }
+
+  
 }
 
 

@@ -43,7 +43,7 @@
                   
                     <tr class="blogItems" *ngFor="let blogItem of blogData" >
                       <ng-container *ngIf="filterId === blogItem.status || onPage==='Draft' || filterId === 'All'"> 
-                        <ng-container *ngIf="blogItem.status != 'For Approval'"> 
+                        <ng-container *ngIf="blogItem.status != 'For Approval' && blogItem.author === user"> 
                           <ng-container *ngIf="blogItem.title.toUpperCase().includes(searchInput.toUpperCase())">                     
                           <td>       
                             <button class="close" (click)="deleteBlog(blogItem.id)" style="float: left;" >                            

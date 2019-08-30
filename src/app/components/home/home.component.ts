@@ -1,5 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import { Observable } from 'rxjs';
+import { DatabaseService } from 'src/app/services/database.service';
 
 
 @Component({
@@ -9,36 +11,36 @@ import {Router} from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private databaseService: DatabaseService) { }
 
   private token;
   private message;
   userType;
   userName;
+  userData;
 
-  
+
 
   ngOnInit() {
-    console.log( atob(localStorage.getItem('token')));
-    this.router.navigate(['dashboard/' + atob(localStorage.getItem('token'))]);
-    if (localStorage.getItem('user_data')){
-      const userData = JSON.parse(atob(localStorage.getItem('user_data')));
-      this.userType = userData.userType.toUpperCase();
-      this.userName = userData.username.toUpperCase();
-    }
     
+    this.router.navigate(['dashboard/' + atob(localStorage.getItem('token'))]);
+    
+    if (localStorage.getItem('user_data')) {
+      this.userData = JSON.parse(atob(localStorage.getItem('user_data')));
+      this.userName = this.userData.username;
+      this.userType = this.userData.userType;
+    }
   }
 
 
-  logout() {
+
+    logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('user_data');
     this.router.navigate(['/login']);
   }
 
 
-
-  
 
 
 }

@@ -21,6 +21,7 @@ export class AuthService {
 
   loginAuthentication(userType) {
     localStorage.setItem('token', btoa(userType));
+    window.location.reload();
     this.router.navigate(['/dashboard']);
 
   }

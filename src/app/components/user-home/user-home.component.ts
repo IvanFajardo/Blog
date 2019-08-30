@@ -16,13 +16,23 @@ export class UserHomeComponent implements OnInit {
   private onPage;
   private filterId = 'All';
   private searchInput: string = '';
+  private userData;
+  user;
   childMessage = '';
 
   usersForm: FormGroup;
   constructor(private modalService: NgbModal, private databaseService: DatabaseService) { }
 
   ngOnInit() {
+    if (localStorage.getItem('user_data')){
+      this.userData = JSON.parse(atob(localStorage.getItem('user_data')));
+      this.user = this.userData.username;
+      console.log(this.user);
+      
+    }
+
     this.getBlogs();
+
 
   }
 
@@ -37,6 +47,8 @@ export class UserHomeComponent implements OnInit {
     this.modalService.dismissAll(content);
 
   }
+
+ 
 
   getBlogs() {
     this.isDraftPage = false;
