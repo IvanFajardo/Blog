@@ -17,10 +17,12 @@ import { AuthGuardService } from './services/auth/auth-guard.service';
 import { RoleGuardService } from './services/auth/role-guard.service';
 import { AdminHomeComponent } from './components/admin-home/admin-home.component';
 import { AuthService } from './services/auth/auth.service';
-import { UserHomeComponent } from './components/user-home/user-home.component';
+import { UserHomeComponent} from './components/user-home/user-home.component';
 import { RouterModule } from '@angular/router';
 import { LoginGuard } from './services/login.guard';
 import { ModalBlogComponent } from './components/modal-blog/modal-blog.component';
+import { ProfileComponent } from './components/profile/profile.component';
+
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -35,7 +37,9 @@ export function tokenGetter() {
     MessagesComponent,
     AdminHomeComponent,
     UserHomeComponent,
-    ModalBlogComponent
+    ModalBlogComponent,
+    ProfileComponent
+ 
   ],
   imports: [
     BrowserModule,

@@ -1,12 +1,17 @@
 <div class="card-header">
     <div class="row">
-        <button class="col btn btn-success crtBtn" (click)="openModal(content)">Create new post</button>
-        <input class="form-control col-sm-6 search-blog pull-right" type="text"  placeholder="Search">
-        <select class="btn btn-info dropdown-toggle filter-status col"required>
-                <option selected>Approved</option>
-                <option >For Approval</option>
-                <option >Rejected</option>
-        </select>
+        
+        
+      
+        
+        
+        <input class="form-control col-sm-6 search-blog pull-right" type="text" [(ngModel)]="searchInput" placeholder="Search">
+
+        <!-- Switcher -->
+        <button *ngIf="isDraftPage === false" class="col btn btn-success crtBtn" (click)="getBlogDraft()">Open Drafts</button>
+        <button *ngIf="isDraftPage === true" class="col btn btn-success crtBtn" (click)="getBlogs()">Open Blogs</button>
+        <button class="col btn btn-success crtBtn" (click)="openModal(content,'')">Create new post</button>
+        
 
     </div>
 </div>
@@ -14,31 +19,49 @@
 <div class="card-body">
         <table class="table fixed_header">
                 <thead>
-                  <tr>
-                    <th scope="col"></th>
-                    <th scope="col">Id</th>
+                  <tr>                  
+                    
                     <th scope="col">Title</th>
-                    <th scope="col">Author</th>
-                    <th scope="col">Date Posted</th>
-                    <th scope="col">Date Approved</th>
-                    <th scope="col">Status</th>
+                    <th scope="col">{{isDraftPage ? "Last Update":"Date Posted"}}</th>
+                    <ng-container *ngIf="isDraftPage === false">
+                      <th scope="col">Date Approved</th>
+                      <th scope="col">Status</th>
+                    </ng-container>
+                    <th scope="col">
+                      <select  *ngIf="onPage==='User'" class="btn btn-info dropdown-toggle filter-status col" [(ngModel)]="filterId">
+        
+                          <option>All</option>
+                          <option>Approved</option>
+                          <option >Returned</option>
+                
+                      </select>
+                    </th>
                    
                   </tr>
                 </thead>
                 <tbody>
                   
-                    <tr class="blogItems" *ngFor="let blogItem of blogData">
-                      <td>
-                          <button class="close" (click)="deleteBlog(blogItem.id)" style="float: none;" >
-                              <span aria-hidden="true">&times;</span>
-                          </button>  
-                      </td>
-                      <th scope="row">{{ blogItem.id }}</th>
-                      <td>{{ blogItem.title }}</td>
-                      <td>{{ blogItem.author }}</td>
-                      <td>{{ blogItem.date }}</td>
-                      <td>{{ blogItem.dateApproved }}</td>
-                      <td>{{ blogItem.status }}</td>
+                    <tr class="blogItems" *ngFor="let blogItem of blogData" >
+                      <ng-container *ngIf="filterId === blogItem.status || onPage==='Draft' || filterId === 'All'"> 
+                        <ng-container *ngIf="blogItem.status != 'For Approval'"> 
+                          <ng-container *ngIf="blogItem.title.toUpperCase().includes(searchInput.toUpperCase())">                     
+                          <td>       
+                            <button class="close" (click)="deleteBlog(blogItem.id)" style="float: left;" >                            
+                                <span aria-hidden="true">&times;</span>
+                            </button>  
+                            <strong>{{ blogItem.title }}</strong>                      
+                          </td>
+                          <td>{{ blogItem.date }}</td>
+                          <ng-container *ngIf="isDraftPage === false">
+                            <td>{{ blogItem.dateApproved }}</td>
+                            <td>{{ blogItem.status }}</td>
+                        </ng-container>
+                        <td>                          
+                          <button class="btn btn-primary" (click)="openModal(content,blogItem)" >Open</button>
+                        </td>
+                      </ng-container>
+                    </ng-container>
+                  </ng-container>
                       
                     </tr>
 
@@ -50,5 +73,9 @@
 </div>
 
 <ng-template #content let-modal>
-    <app-modal-blog (closeModal)="closeModal($event)" (getBlogs)="getBlogs($event)"></app-modal-blog>
+  <app-modal-blog (messageOutput)="getChildMessage($event)" (closeModal)="closeModal($event)" (getBlogs)="getBlogs($event)" [data]="blogObject" [onPage]="onPage"></app-modal-blog>
 </ng-template>
+
+<app-messages [message]="childMessage"></app-messages>
+
+

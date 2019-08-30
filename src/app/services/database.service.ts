@@ -10,12 +10,14 @@ export class DatabaseService {
 
   baseUrl: string;
   blogBaseUrl: string;
+  draftBlogBaseUrl: string;
   config: any;
 
   constructor(private http: HttpClient, configService: ConfigService) { 
     this.config = configService.getConfigs();
     this.baseUrl = this.config.baseUrl;
     this.blogBaseUrl = this.config.blogBaseUrl;
+    this.draftBlogBaseUrl = this.config.draftBlogBaseUrl;
   }
 
   getHeaders() {
@@ -45,9 +47,14 @@ export class DatabaseService {
     return this.http.delete(this.baseUrl + id, { headers });
   }
 
-  addJsonBlog(data) {
+  addBlogJson(data) {
     const headers = this.getHeaders();
     return this.http.post(this.blogBaseUrl,  data  , { headers });
+  }
+
+  updateBlogJson(data, id) {
+    const headers = this.getHeaders();
+    return this.http.put(this.blogBaseUrl + id,  data  , { headers });
   }
 
   getBlogJson() {
@@ -58,6 +65,26 @@ export class DatabaseService {
   deleteBlogJson(id) {
     const headers = this.getHeaders();
     return this.http.delete(this.blogBaseUrl + id, { headers });
+  }
+
+  addDraftBlog(data) {
+    const headers = this.getHeaders();
+    return this.http.post(this.draftBlogBaseUrl,  data  , { headers });
+  }
+
+  updateDraftBlog(data, id) {
+    const headers = this.getHeaders();
+    return this.http.put(this.draftBlogBaseUrl + id,  data  , { headers });
+  }
+
+  getDraftBlog() {
+    const headers = this.getHeaders();
+    return this.http.get(this.draftBlogBaseUrl, { headers } );
+  }
+
+  deleteDraftBlog(id) {
+    const headers = this.getHeaders();
+    return this.http.delete(this.draftBlogBaseUrl + id, { headers });
   }
 }
 

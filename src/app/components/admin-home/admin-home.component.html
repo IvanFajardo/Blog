@@ -1,1 +1,36 @@
-<p>admin-home works!</p>
+<div class="card-header">
+        <div class="row">                        
+            <input class="form-control col-sm-6 search-blog pull-right" type="text" [(ngModel)]="searchInput"  placeholder="Search by Title">            
+        </div>
+    </div>
+    
+    <div class="card-body">
+            <table class="table fixed_header">
+                    <thead>
+                      <tr>
+                       
+                        <th scope="col">Author</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Date Posted</th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody>                      
+                        <tr class="blogItems" *ngFor="let blogItem of blogData" (click)=openModal(content,blogItem)>
+                            <ng-container *ngIf="blogItem.status === 'For Approval'">
+                                <ng-container *ngIf="blogItem.title.toUpperCase().includes(searchInput.toUpperCase())">
+                                <td> 
+                                    <strong>{{ blogItem.author }}</strong>                          
+                                </td>
+                                <td>{{ blogItem.title }}</td>
+                                <td>{{ blogItem.date }}</td>
+                                </ng-container>
+                            </ng-container>
+                        </tr>    
+                    </tbody>
+                  </table>
+    </div>    
+    <ng-template #content let-modal>
+        <app-modal-blog (closeModal)="closeModal($event)" (getBlogs)="getBlogs($event)" [data]="blogObject" [onPage]="onPage"></app-modal-blog>
+    </ng-template>
+    

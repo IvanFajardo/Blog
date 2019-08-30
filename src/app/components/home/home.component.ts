@@ -12,6 +12,10 @@ export class HomeComponent implements OnInit {
   constructor(private router: Router) { }
 
   private token;
+  private message;
+  userType;
+  userName;
+
   
 
   ngOnInit() {
@@ -19,16 +23,22 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['dashboard/' + atob(localStorage.getItem('token'))]);
     if (localStorage.getItem('user_data')){
       const userData = JSON.parse(atob(localStorage.getItem('user_data')));
-      
+      this.userType = userData.userType.toUpperCase();
+      this.userName = userData.username.toUpperCase();
     }
     
   }
+
 
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('user_data');
     this.router.navigate(['/login']);
   }
+
+
+
+  
 
 
 }

@@ -1,19 +1,50 @@
 <form [formGroup]= "blogForm">
     <div class="modal-blog">
         <div class="modal-header">
-            <h4 class="modal-title"><input type="text" class="form-control" formControlName = "title" placeholder="Add a Title"></h4>
+            <h4 class="modal-title">
+                <label >Title</label>
+                <input type="text" class="form-control" formControlName = "title" placeholder="Add a Title" >
+            </h4>
             <button type="button" class="close" aria-label="Close" (click)="close()">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
 
         <div class="modal-body">
-                <textarea class="form-control" formControlName="content" rows="8" placeholder="Content Area"></textarea>
+            
+            <h4><label >Content</label></h4>
+            <textarea class="form-control" formControlName="content" rows="8" placeholder="Content Area"></textarea>
+
+            <ng-container *ngIf ="data.remarks || onPage === 'Admin'">
+                
+                <h4 class="modal-title"><label for="remarksId">Remarks</label>
+                <textarea class="form-control" id='remarksId' formControlName="remarks" rows="3" placeholder="Remarks"></textarea>
+            </h4>
+            </ng-container>
+
         </div>
 
         <div class="modal-footer">
-            <button type="button" class="btn btn-success"  >Save as Draft</button>
-            <button type="button" class="btn btn-success" (click)="addBlog()">Submit for Approval</button>
+            <!-- Regular User Modal Buttons -->
+            <ng-container *ngIf = "userData.userType === 'user'">
+
+                <!-- Check if user is in the Drafts page -->
+                <ng-container *ngIf ="!data.status || data.status === 'Returned' ">
+                    
+                    <button type="button" class="btn btn-success"  (click)="saveToDraft()">Save as Draft</button>
+                    <button type="button" class="btn btn-success" (click)="addBlog()" [disabled] = "!blogForm.valid">Submit for Approval</button>
+                    
+                </ng-container>
+
+            </ng-container>
+
+            <!-- Admin Modal Buttons -->
+            <ng-container *ngIf = "userData.userType === 'admin'">               
+            
+                <button type="button" class="btn btn-success" (click)="rejectBlog()" [disabled] = "!blogForm.get('remarks').value"> Reject </button>
+                <button type="button" class="btn btn-success" (click)="acceptBlog()" [disabled] = "!blogForm.get('remarks').value">Accept</button>                
+            
+            </ng-container>
         </div>
         
     </div>

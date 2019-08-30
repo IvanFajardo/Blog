@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DatabaseService } from 'src/app/services/database.service';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-user-home',
@@ -9,16 +10,26 @@ import { DatabaseService } from 'src/app/services/database.service';
 })
 export class UserHomeComponent implements OnInit {
 
+  private isDraftPage;
   private blogData;
+  private blogObject;
+  private onPage;
+  private filterId = 'All';
+  private searchInput: string = '';
+  childMessage = '';
+
+  usersForm: FormGroup;
   constructor(private modalService: NgbModal, private databaseService: DatabaseService) { }
 
   ngOnInit() {
     this.getBlogs();
+
   }
 
   
-  openModal(content) { 
+  openModal(content,data?) { 
     this.modalService.open(content, {size: 'lg'});
+    this.blogObject = data;
 
   }
 
@@ -28,17 +39,49 @@ export class UserHomeComponent implements OnInit {
   }
 
   getBlogs() {
+    this.isDraftPage = false;
     this.databaseService.getBlogJson().subscribe(data => {
       this.blogData = data;
+      this.onPage = 'User';
       console.log(this.blogData);
       
     });
   }
 
+  getBlogDraft() {
+    this.isDraftPage = true;
+    this.databaseService.getDraftBlog().subscribe(data => {
+      this.blogData = data;
+      this.onPage = 'Draft';
+      console.log(this.blogData);
+      
+    });
+
+  }
+
 
   deleteBlog(id) {
-    this.databaseService.deleteBlogJson(id).subscribe(() => {
-      this.getBlogs();
-    });
+    if(confirm('Are you sure you want to delete this Blog?')){
+      if (!this.isDraftPage) {
+        this.databaseService.deleteBlogJson(id).subscribe(() => {
+          this.getBlogs();
+        });
+      } else {
+        this.databaseService.deleteDraftBlog(id).subscribe(() => {
+          this.getBlogDraft();
+        });
+      }
+    }
+
   }
+
+
+  getChildMessage($event){
+    this.childMessage = $event;
+    
+  }
+
+  
 }
+
+
