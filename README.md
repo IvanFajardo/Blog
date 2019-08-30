@@ -1,6 +1,6 @@
 # Blog
 `npm start` to run the server<br>
-`npm json` to run the json server
+`npm run json` to run the json server
 
 # Login Details
 ADMIN:<br>
