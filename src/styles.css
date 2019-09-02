@@ -1,4 +1,111 @@
 /* You can add global styles to this file, and also import other style files */
 html body {
     background-color: rgb(235, 232, 232);
+   
+}
+
+.bgimage{
+    background-image:url('src/assets/login/bg.png');
+    height: 100vh;
+    width: 100vw;
+
+}
+
+.container{
+    height: 100%;
+    align-content: center;
+    }
+
+.card_login{
+
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 400px;
+    background-color: rgba(0,0,0,0.5) !important;
+    border-radius: 5%;
+    }
+
+.card-header h3{
+    color: white;
+    text-align: center;
+    }
+
+input:focus{
+    outline: 0 0 0 0  !important;
+    box-shadow: 0 0 0 0 !important;
+    
+    }
+    
+.remember{
+color: white;
+}
+
+.remember input
+{
+width: 20px;
+height: 20px;
+margin-left: 15px;
+margin-right: 5px;
+}
+
+
+.login_btn{
+    color: black;
+    background-color: rgb(55, 199, 243);
+    width: 100px;
+    }
+    
+.login_btn:hover{
+    color: black;
+    background-color: white;
+    }
+
+.links{
+    color: white;
+    }
+
+.links a{
+    margin-left: 4px;
+    }
+
+
+
+.search-blog {
+    margin: 1%;
+    float: right;
+}
+
+.blogItems:hover {
+    background-color: rgb(185, 224, 255);
+}
+
+.filter-status {
+    margin: 1%;
+}
+
+
+tbody {
+    display:block;
+    height:300px;
+    overflow:auto;
+}
+thead, tbody tr {
+    display:table;
+    width:100%;
+    table-layout:fixed;/* even columns width , fix width of table too*/
+}
+thead {
+    width: calc( 100% - 1em )/* scrollbar is average 1em/16px width, remove it from thead width */
+}
+table {
+    width:100%;
+}
+
+.crtBtn {
+    margin: 1%;
+    float: left;
+}
+
+.filter-status {
+    margin: 1%;
 }
