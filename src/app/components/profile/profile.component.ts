@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DatabaseService } from 'src/app/services/database.service';
 
 @Component({
   selector: 'app-profile',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  private userData;
+  private onEdit: boolean;
+
+  constructor(private databaseService: DatabaseService) { }
 
   ngOnInit() {
+    this.userData = JSON.parse(atob(localStorage.getItem('user_data')));
+    this.databaseService.getJson(this.userData.id).subscribe(data => {
+      console.log(data);
+      
+    });
   }
 
 }

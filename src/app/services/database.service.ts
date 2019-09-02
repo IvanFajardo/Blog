@@ -26,9 +26,9 @@ export class DatabaseService {
     return headers;
   }
 
-  getJson() {
+  getJson(id?) {
     const headers = this.getHeaders();
-    return this.http.get(this.baseUrl, { headers } );
+    return this.http.get(this.baseUrl + (id || ''), { headers } );
   }
 
 

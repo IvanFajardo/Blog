@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
 
   private token;
   private message;
+  onProfile: boolean;
   userType;
   userName;
   userData;
@@ -22,7 +23,6 @@ export class HomeComponent implements OnInit {
 
 
   ngOnInit() {
-    
     this.router.navigate(['dashboard/' + atob(localStorage.getItem('token'))]);
     
     if (localStorage.getItem('user_data')) {
@@ -41,6 +41,12 @@ export class HomeComponent implements OnInit {
   }
 
   navProfile() {
+    if (this.onProfile === true) {
+      this.onProfile = false;
+      this.router.navigate(['dashboard/' + atob(localStorage.getItem('token'))]);
+      return;
+    }
+    this.onProfile = true;
     this.router.navigate(['dashboard/profile']);
   }
 
