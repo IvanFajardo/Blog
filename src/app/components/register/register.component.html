@@ -5,29 +5,32 @@
                 <div class="card-header">
                     <h3>Register</h3>
                 </div>
-                <div class="card-body">
-                    <form [formGroup]="registerForm">
-                        <div class="input-group form-group">
-                            <input type="text" class="form-control" formControlName="fname" (blur)="checkError('fname','First Name is a required Field!')" placeholder="First Name">
-                            <fa-icon *ngIf="registerForm.get('fname').valid" [icon]="checkCircle"></fa-icon>
-                        </div>
-                        
-                        <div class="input-group form-group">
-                            <input type="text" class="form-control" formControlName="mname" (blur)="checkError('mname','Middle Name is a required Field!')" placeholder="Middle Name">
-                            <fa-icon *ngIf="registerForm.get('mname').valid" [icon]="checkCircle"></fa-icon>
-                        </div>
+                <form [formGroup]="registerForm">
+                    <div class="card-body">                   
+                        <div class="row">
+                            <div class="input-group form-group col">
+                                
+                                <input type="text" class="form-control" formControlName="fname" (blur)="checkError('fname','First Name is a required Field!')" placeholder="First Name">
+                                <fa-icon *ngIf="registerForm.get('fname').valid" [icon]="checkCircle"></fa-icon>
+                            </div>
+                            
+                            <!-- <div class="input-group form-group">
+                                <input type="text" class="form-control" formControlName="mname" (blur)="checkError('mname','Middle Name is a required Field!')" placeholder="Middle Name">
+                                <fa-icon *ngIf="registerForm.get('mname').valid" [icon]="checkCircle"></fa-icon>
+                            </div> -->
 
-                        <div class="input-group form-group">
-                            <input type="text" class="form-control" formControlName="lname" (blur)="checkError('lname','Last Name is a required Field!')" placeholder="Last Name">
-                            <fa-icon *ngIf="registerForm.get('lname').valid" [icon]="checkCircle"></fa-icon>
+                            <div class="input-group form-group col">
+                                <input type="text" class="form-control" formControlName="lname" (blur)="checkError('lname','Last Name is a required Field!')" placeholder="Last Name">
+                                <fa-icon *ngIf="registerForm.get('lname').valid" [icon]="checkCircle"></fa-icon>
+                            </div>
                         </div>
 
                         <div class="input-group form-group">
                             <input type="email" class="form-control" formControlName="email" (blur)="checkError('email','Invalid email!')" placeholder="Email">
                             <fa-icon *ngIf="registerForm.get('email').valid" [icon]="checkCircle"></fa-icon>
-                        </div>
-                        <br>
-
+                        </div>                                     
+                    
+                    
                         <div class="input-group form-group">
                             <input type="text" class="form-control" formControlName="username" (blur)="validateUser()" placeholder="Username">
                             <fa-icon *ngIf="registerForm.get('username').valid && !hasDuplicate" [icon]="checkCircle"></fa-icon>
@@ -50,11 +53,13 @@
                             <option value="admin">Admin</option>
                             <option value="user">User</option>
                         </select>
-                    </div>
+                        </div>
                         <button type="submit" class="btn float-right login_btn" (click) = submitUser() [disabled] = "!registerForm.valid">Submit</button>
                         
-                    </form>
-                </div> 
+                    </div> 
+                    <br>                  
+                    
+                </form> 
 
                 <div class="card-footer">
                     <div class="d-flex justify-content-center links">

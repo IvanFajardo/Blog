@@ -17,6 +17,7 @@ export class AdminHomeComponent implements OnInit {
   constructor(private modalService: NgbModal, private databaseService: DatabaseService) { }
 
   ngOnInit() {
+    this.searchInput = '';
     this.getBlogs();
   }
 

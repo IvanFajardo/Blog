@@ -12,19 +12,19 @@ height: 100%;
 align-content: center;
 }
 
+.form-control {
+  margin-bottom: 2%;
+}
+
 .card{
-height: 370px;
+height: 75%;
 margin-top: auto;
 margin-bottom: auto;
-width: 400px;
+width: 40%;
 background-color: rgba(0,0,0,0.5) !important;
 border-radius: 5%;
 }
 
-.card-body {
-    overflow-y: scroll;
-    
-  }
 
 
 .card-header h3{

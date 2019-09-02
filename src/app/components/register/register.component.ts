@@ -27,8 +27,8 @@ export class RegisterComponent implements OnInit {
     this.hasDuplicate = false;
     this.checkCircle = faCheckCircle;
     this.registerForm = new FormGroup({
-      fname: new FormControl(),
-      mname: new FormControl('', [Validators.required]),
+      fname: new FormControl('', [Validators.required]),
+      // mname: new FormControl('', [Validators.required]),
       lname: new FormControl('', [Validators.required]),
       username: new FormControl('', [Validators.required, Validators.minLength(6)]),
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -59,7 +59,7 @@ export class RegisterComponent implements OnInit {
       const pass = this.encryptPass(this.registerForm.get('password').value);
       this.databaseService.addJson({
         firstName: this.registerForm.get('fname').value,
-        middleName: this.registerForm.get('mname').value,
+        // middleName: this.registerForm.get('mname').value,
         lastName: this.registerForm.get('lname').value,
         username: this.registerForm.get('username').value,
         email: this.registerForm.get('email').value,

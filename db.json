@@ -39,6 +39,15 @@
       "password": "MTIzNDU2",
       "userType": "user",
       "id": 4
+    },
+    {
+      "firstName": "John Ivan",
+      "lastName": "Fajardo",
+      "username": "123456",
+      "email": "ivan@g",
+      "password": "MTIzNDU2",
+      "userType": "admin",
+      "id": 5
     }
   ],
   "blogs": [
@@ -91,6 +100,16 @@
       "status": "For Approval",
       "remarks": "",
       "id": 5
+    },
+    {
+      "author": "TypeUser1",
+      "title": "NICE",
+      "content": "123456",
+      "date": "Sep 02 11:09 AM",
+      "dateApproved": "",
+      "status": "For Approval",
+      "remarks": "",
+      "id": 6
     }
   ],
   "tempBlogs": [
