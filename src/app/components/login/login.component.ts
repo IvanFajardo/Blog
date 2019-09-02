@@ -21,16 +21,18 @@ export class LoginComponent implements OnInit {
   faUser = faUser;
   faKey = faKey;
 
-  loginForm = new FormGroup( {
-    username: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required, Validators.minLength(6)]),
-    rememberMe: new FormControl(false)
-  });
+  loginForm: FormGroup;
   private data;
   private errmsg;
   constructor(private databaseService: DatabaseService, private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
+    this.loginForm = new FormGroup( {
+      username: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+      rememberMe: new FormControl(false)
+    });
+
     if (localStorage.getItem('remember_me')) {
       let rememberMe = JSON.parse(atob(localStorage.getItem('remember_me')));
       this.loginForm.get('username').setValue(rememberMe.username);

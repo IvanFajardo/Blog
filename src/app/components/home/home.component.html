@@ -2,15 +2,20 @@
     
     <a>Username: {{userName}}</a><br>
     <a>User Type: {{userType}}</a>
+    
 
 
+</div>
+<div class="col">
+<button class="btn btn-outline-dark logout-btn row" (click)="logout()">Logout</button>
+<button class="btn btn-outline-dark profile-btn row" (click)="navProfile()">Profile</button>
 </div>
 
 <div style="text-align: center;">
     
     <h1 class="display-1">BLOG</h1>
 
-    <button class="btn btn-outline-dark logout-btn" (click)="logout()">Logout</button>
+    
     
     <div class="card col-md-10">
         <router-outlet></router-outlet>

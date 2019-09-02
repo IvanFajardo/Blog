@@ -8,13 +8,13 @@ import { AdminHomeComponent } from './components/admin-home/admin-home.component
 import { RoleGuardService } from './services/auth/role-guard.service';
 import { UserHomeComponent } from './components/user-home/user-home.component';
 import { LoginGuard } from './services/login.guard';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 export const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: 'login',      component: LoginComponent, canActivate: [LoginGuard]},
-  { path: 'register',      component: RegisterComponent, canActivate: [LoginGuard] },
-  
+  { path: 'register',      component: RegisterComponent, canActivate: [LoginGuard] }
 ];
 
 export const dashboardRoutes: Routes = [
@@ -27,11 +27,15 @@ export const dashboardRoutes: Routes = [
       { path: 'user', component: UserHomeComponent,
       data: {userType: 'user'},
       canActivate: [RoleGuardService]
+
       },
       {
         path: 'admin', component: AdminHomeComponent,
         data: {userType: 'admin'},
         canActivate: [RoleGuardService]
+      },
+      {
+        path: 'profile', component: ProfileComponent
       }
     ]
   },

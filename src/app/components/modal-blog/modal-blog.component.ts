@@ -18,16 +18,17 @@ export class ModalBlogComponent implements OnInit {
   @Input() onPage;
   private userData;
   private userId;
-  
-  private blogForm = new FormGroup({
-    title: new FormControl('', [Validators.required]),
-    content: new FormControl('', [Validators.required]),
-    remarks: new FormControl('')
-  });
+  private blogForm: FormGroup;
 
   constructor(private databaseService: DatabaseService) { }
 
   ngOnInit() {
+    this.blogForm = new FormGroup({
+      title: new FormControl('', [Validators.required]),
+      content: new FormControl('', [Validators.required]),
+      remarks: new FormControl('')
+    });
+
     if (localStorage.getItem('user_data')){
       this.userData = JSON.parse(atob(localStorage.getItem('user_data')));
     }

@@ -14,21 +14,21 @@ export class UserHomeComponent implements OnInit {
   private blogData;
   private blogObject;
   private onPage;
-  private filterId = 'All';
-  private searchInput: string = '';
+  private filterId: string;
+  private searchInput: string;
   private userData;
-  user;
-  childMessage = '';
-
-  usersForm: FormGroup;
+  private user;
+  private childMessage: string;
   constructor(private modalService: NgbModal, private databaseService: DatabaseService) { }
 
   ngOnInit() {
+    this.filterId = 'All';
+    this.searchInput = '';
+    
     if (localStorage.getItem('user_data')){
       this.userData = JSON.parse(atob(localStorage.getItem('user_data')));
       this.user = this.userData.username;
       console.log(this.user);
-      
     }
 
     this.getBlogs();
@@ -37,13 +37,13 @@ export class UserHomeComponent implements OnInit {
   }
 
   
-  openModal(content,data?) { 
+  openModal(content, data?) {
     this.modalService.open(content, {size: 'lg'});
     this.blogObject = data;
 
   }
 
-  closeModal(content) { 
+  closeModal(content) {
     this.modalService.dismissAll(content);
 
   }

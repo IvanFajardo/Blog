@@ -12,7 +12,7 @@ export class AdminHomeComponent implements OnInit {
   private blogObject;
   private blogData;
   private onPage;
-  private searchInput = '';
+  private searchInput: string;
 
   constructor(private modalService: NgbModal, private databaseService: DatabaseService) { }
 

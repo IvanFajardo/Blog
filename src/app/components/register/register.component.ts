@@ -14,26 +14,30 @@ import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 })
 export class RegisterComponent implements OnInit {
 
-  private registerForm = new FormGroup({
-    fname: new FormControl('', [Validators.required]),
-    mname: new FormControl('', [Validators.required]),
-    lname: new FormControl('', [Validators.required]),
-    username: new FormControl('', [Validators.required, Validators.minLength(6)]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required, Validators.minLength(6)]),
-    repassword: new FormControl('', [Validators.required, Validators.minLength(6)]),
-    userType: new FormControl('', [Validators.required])
-  });
-
+  private registerForm;
   private errmsg;
   private user;
-  hasDuplicate = false;
-  checkCircle = faCheckCircle;
+  hasDuplicate: boolean;
+  checkCircle;
   message: string;
 
   constructor(private databaseService: DatabaseService, private router: Router) { }
 
-  ngOnInit() {  }
+  ngOnInit() { 
+    this.hasDuplicate = false;
+    this.checkCircle = faCheckCircle;
+    this.registerForm = new FormGroup({
+      fname: new FormControl(),
+      mname: new FormControl('', [Validators.required]),
+      lname: new FormControl('', [Validators.required]),
+      username: new FormControl('', [Validators.required, Validators.minLength(6)]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+      repassword: new FormControl('', [Validators.required, Validators.minLength(6)]),
+      userType: new FormControl('', [Validators.required])
+    });
+
+   }
 
   validatePass(): boolean {
     let isValidPass = false;

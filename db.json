@@ -81,7 +81,27 @@
       "status": "For Approval",
       "remarks": "",
       "id": 4
+    },
+    {
+      "author": "TypeUser1",
+      "title": "123",
+      "content": "123",
+      "date": "Sep 02 10:09 AM",
+      "dateApproved": "",
+      "status": "For Approval",
+      "remarks": "",
+      "id": 5
     }
   ],
-  "tempBlogs": []
+  "tempBlogs": [
+    {
+      "author": "TypeUser1",
+      "title": "123",
+      "content": "123",
+      "date": "Sep 02 10:09 AM",
+      "remarks": null,
+      "status": null,
+      "id": 1
+    }
+  ]
 }

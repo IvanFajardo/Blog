@@ -40,6 +40,10 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
+  navProfile() {
+    this.router.navigate(['dashboard/profile']);
+  }
+
 
 
 
