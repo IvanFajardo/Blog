@@ -19,6 +19,7 @@ export class UserHomeComponent implements OnInit {
   private userData;
   private user;
   private childMessage: string;
+  private messageCount = 0;
   constructor(private modalService: NgbModal, private databaseService: DatabaseService) { }
 
   ngOnInit() {
@@ -90,6 +91,7 @@ export class UserHomeComponent implements OnInit {
 
   getChildMessage($event){
     this.childMessage = $event;
+    this.messageCount += 1;
     
   }
 

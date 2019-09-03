@@ -1,44 +1,96 @@
 <div class="profile-group">
 
-<label class="display-4" > Profile</label>
+    <label class="display-4" > Profile</label>
 
-<div class="row">
+    <div class="row" [formGroup]="editForm" [hidden]=onPassword>
+        <div class="col-md-4 h5" >    
+            <div class="profile-box" >
+                <label class="col-md-6" >First Name:</label>
+                <div class="input-box"[hidden]=onEdit>{{userData.firstName}}</div>
+                <input type="text" class="col-md-8 input-box form-control " formControlName="fname" [hidden]=!onEdit>
+            </div>
+            <div class="profile-box">
+                <label class="col-md-6" >Last Name:</label>
+                <div class="input-box"[hidden]=onEdit>{{userData.lastName}}</div>
+                <input type="text" class="col-md-8 input-box form-control " formControlName="lname" [hidden]=!onEdit>
+            </div>
+            <div class="profile-box"> 
+                <label class="col-md-6" >Email:</label>
+                <div class="input-box"[hidden]=onEdit>{{userData.email}}</div>
+                <input type="text" class="col-md-8 input-box form-control " formControlName="email"  [hidden]=!onEdit>
+            </div>
+        </div>
 
-    <div class="col-md-4 h5" >    
-        <div class="profile-box" >
-            <label class="col-md-6" >First Name:</label>
-            <input type="text" class="col-md-8 input-box form-control " value="{{userData.firstName}}">
+        <div class="col-md-4 h5" > 
+            <div class="profile-box"> 
+                <label class="col-md-6" >User Name:</label>
+                {{userData.username}}
+            </div>
+            <div class="profile-box">
+                <label class="col-md-6" >User Type:</label>
+                {{userData.userType.toUpperCase()}}
+                
+            </div>
+            <div class="row" class="edit-buttons">
+                <button class="col-md-8 btn btn-success edit-buttons" (click) = "editInfo()" [disabled]=editForm.invalid>{{onEdit ? "Save Info":"Edit Personal Info"}}</button>
+                <button class="col-md-8 btn btn-success edit-buttons" (click) = "changePassword()" >Change Password</button>
+                
+            </div>
         </div>
-        <div class="profile-box">
-            <label class="col-md-6" >Last Name:</label>
-            <input type="text" class="col-md-8 input-box form-control " value="{{userData.lastName}}">
+
+        <div class="col-md-4 h5" style="text-align: center;"> 
+            <img src="{{imageString}}" alt="" width="200px"
+            height="200px">
+            <label class="btn btn-success">
+                {{ hasPic ? "Change Photo" : "Upload Photo"  }}<input type="file" (change)="onFileUpload($event)" hidden >
+            </label>
+            
         </div>
-        <div class="profile-box"> 
-            <label class="col-md-6" >Email:</label>
-            <input type="text" class="col-md-8 input-box form-control " value="{{userData.email}}">
+
+        
+    </div>
+
+    <div [formGroup]="editPass" class="row h5" [hidden]=!onPassword  >    
+        <div class="col-md-6 h5" > 
+            <div class="profile-box" >
+                <label class="col-md-12" >Enter Old Password:</label>
+                <div class = "row">
+                    <input type="password" class="col-md-8 input-box form-control" (blur)="checkPassword()" formControlName="oldpassword">
+                    <fa-icon class="col-md-2" *ngIf="editPass.get('oldpassword').valid" [icon]="checkCircle"></fa-icon>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 h5" > 
+            <div class="profile-box">
+                <label class="col-md-12" >Enter new password:</label>
+                <div class = "row">
+                    <input type="password" class="col-md-8 input-box form-control " formControlName="newpassword" >
+                    <fa-icon class="col-md-2" *ngIf="editPass.get('newpassword').valid" [icon]="checkCircle"></fa-icon>
+                </div>
+            </div>
+            <div class="profile-box"> 
+                <label class="col-md-12" >Re-Enter new password:</label>
+                <div class = "row">
+                    <input type="password" class="col-md-8 input-box form-control " formControlName="repassword">
+                    <fa-icon *ngIf="(editPass.get('newpassword').value === editPass.get('repassword').value)
+                                    && editPass.get('newpassword').valid" [icon]="checkCircle"></fa-icon>
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="row col-md-5 editPass-buttons" >
+                <button class="col-md-4 btn btn-success edit-buttons" (click) = "backToProfile()" >Back</button>
+                <button class="col-md-6 btn btn-success edit-buttons" (click) = "changePassword()" [disabled]=editPass.invalid>Update Password</button>
+                
         </div>
     </div>
 
-    <div class="col-md-4 h5" > 
-        <div class="profile-box"> 
-            <label class="col-md-6" >User Name:</label>
-            <input type="text" class="col-md-8 input-box form-control " value="{{userData.username}}">
-        </div>
-        <div class="profile-box">
-            <label class="col-md-6" >User Type:</label>
-            <input type="text" class="col-md-8 input-box form-control " value="{{userData.userType.toUpperCase()}}">
-        </div>
-        <div class="col-md-6" style="text-align: center">
-            <button class="row btn btn-success">Change Password</button>
-            <button class="row btn btn-success">Edit Fields</button>
-        </div>
-    </div>
+    
 
-    <div class="col-md-4 h5"> 
-        <img src="assets/profile/userImagePH.png" alt="" width="100%">
-        <button class="row btn btn-success" width="100%">Upload Profile Picture</button>
-    </div>
 </div>
+
+<app-messages [message]="message" [messageCount]="messageCount"></app-messages>
     
 
 

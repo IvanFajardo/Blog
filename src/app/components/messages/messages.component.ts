@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class MessagesComponent implements OnInit {
 
   @Input() message: string;
+  @Input() messageCount: number;
 
 
   constructor() { }
@@ -17,7 +18,7 @@ export class MessagesComponent implements OnInit {
   }
 
   close() {
-    this.message = null;
+    this.messageCount = null;
   }
 
   public sendMessage(message) {

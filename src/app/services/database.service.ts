@@ -11,6 +11,7 @@ export class DatabaseService {
   baseUrl: string;
   blogBaseUrl: string;
   draftBlogBaseUrl: string;
+  picUrl: string;
   config: any;
 
   constructor(private http: HttpClient, configService: ConfigService) { 
@@ -18,6 +19,7 @@ export class DatabaseService {
     this.baseUrl = this.config.baseUrl;
     this.blogBaseUrl = this.config.blogBaseUrl;
     this.draftBlogBaseUrl = this.config.draftBlogBaseUrl;
+    this.picUrl = this.config.picUrl;
   }
 
   getHeaders() {
@@ -87,7 +89,23 @@ export class DatabaseService {
     return this.http.delete(this.draftBlogBaseUrl + id, { headers });
   }
 
-  
+
+  getPicJson() {
+    const headers = this.getHeaders();
+    return this.http.get(this.picUrl, { headers } );
+  }
+
+
+  addPicJson(data) {
+    const headers = this.getHeaders();
+    return this.http.post(this.picUrl,  data  , { headers });
+  }
+
+  updatePicJson(data, id) {
+    const headers = this.getHeaders();
+    return this.http.put(this.picUrl + id,  data  , { headers });
+  }
+
 }
 
 

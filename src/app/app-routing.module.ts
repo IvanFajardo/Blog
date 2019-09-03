@@ -23,7 +23,7 @@ export const dashboardRoutes: Routes = [
     component: HomeComponent,
     canActivate: [AuthGuardService],
     children: [
-      // { path: '', redirectTo: 'user', pathMatch: 'full' },
+      { path: '', redirectTo: atob(localStorage.getItem('token')), pathMatch: 'full' },
       { path: 'user', component: UserHomeComponent,
       data: {userType: 'user'},
       canActivate: [RoleGuardService]

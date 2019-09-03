@@ -17,6 +17,7 @@ export class RegisterComponent implements OnInit {
   private registerForm;
   private errmsg;
   private user;
+  private messageCount = 0;
   hasDuplicate: boolean;
   checkCircle;
   message: string;
@@ -103,6 +104,7 @@ export class RegisterComponent implements OnInit {
 
   sendErrorMessage(message) {
     this.message = message;
+    this.messageCount += 1;
   }
 
 

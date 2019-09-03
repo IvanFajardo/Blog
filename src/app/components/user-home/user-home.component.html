@@ -76,6 +76,6 @@
   <app-modal-blog (messageOutput)="getChildMessage($event)" (closeModal)="closeModal($event)" (getBlogs)="getBlogs($event)" [data]="blogObject" [onPage]="onPage"></app-modal-blog>
 </ng-template>
 
-<app-messages [message]="childMessage"></app-messages>
+<app-messages [message]="childMessage" [messageCount]="messageCount"></app-messages>
 
 

@@ -1,5 +1,6 @@
 {
     "baseUrl": "http://localhost:5000/users/",
     "blogBaseUrl": "http://localhost:5000/blogs/",
-    "draftBlogBaseUrl": "http://localhost:5000/tempBlogs/"
+    "draftBlogBaseUrl": "http://localhost:5000/tempBlogs/",
+    "picUrl": "http://localhost:5000/profPic/"
 }

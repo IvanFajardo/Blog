@@ -12,3 +12,14 @@
 .input-box {
     margin-left: 15% 
 }
+
+.edit-buttons {
+    text-align: center;
+    margin: 2%;
+}
+
+.editPass-buttons {
+    position: absolute;
+    right: 0;
+    bottom: 0
+}

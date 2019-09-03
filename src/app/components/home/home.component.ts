@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
 
 
   ngOnInit() {
-    this.router.navigate(['dashboard/' + atob(localStorage.getItem('token'))]);
+    // this.router.navigate(['dashboard/' + atob(localStorage.getItem('token'))]);
     
     if (localStorage.getItem('user_data')) {
       this.userData = JSON.parse(atob(localStorage.getItem('user_data')));
@@ -38,6 +38,7 @@ export class HomeComponent implements OnInit {
     localStorage.removeItem('token');
     localStorage.removeItem('user_data');
     this.router.navigate(['/login']);
+    window.location.reload();
   }
 
   navProfile() {

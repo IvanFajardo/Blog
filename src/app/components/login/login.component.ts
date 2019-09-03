@@ -23,7 +23,8 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
   private data;
-  private errmsg;
+  private message;
+  private messageCount = 0;
   constructor(private databaseService: DatabaseService, private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
@@ -67,8 +68,8 @@ export class LoginComponent implements OnInit {
     
     this.setRememberMe();
     if (this.loginForm.get('username').invalid) {
-      this.errmsg = 'Username is required!';
-     } else if (this.loginForm.get('password').invalid) { this.errmsg = 'Invalid Password'; 
+      this.sendErrorMessage('Username is required!');
+     } else if (this.loginForm.get('password').invalid) { this.sendErrorMessage('Invalid Password'); 
       } else {
         console.log(isValid);
         this.databaseService.getJson().subscribe((data: any) => {
@@ -83,13 +84,13 @@ export class LoginComponent implements OnInit {
                 isValid = true;
                 id = element.id;
               } else {
-                this.errmsg = 'Invalid Username/Password';
+                this.sendErrorMessage('Invalid Username/Password');
 
               }
             }
           });
           if (!isRegistered) {
-            this.errmsg = 'Username not found';
+            this.sendErrorMessage( 'Username not found');
           }
           if (isValid) {
            // this.setToken(this.loginForm.get('username').value);
@@ -118,6 +119,11 @@ export class LoginComponent implements OnInit {
     }
 
    }
+
+   sendErrorMessage(msg) {
+    this.message = msg;
+    this.messageCount += 1;
+  }
 
 
 
