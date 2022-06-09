@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "buildProd": "ng build --base-href /blog/ --output-path=dist/production",
+    "buildDev2": "ng build --base-href /blogDev/ --output-path=dist/dev",
     "buildDev": "ng build --base-href /blogDev/ --output-path=dist/dev",
     "buildQA": "ng build --base-href /blogQA/ --output-path=dist/qa",
     "test": "ng test",
