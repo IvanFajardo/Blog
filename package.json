@@ -4,7 +4,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --base-href /blog/ --output-path=dist/production",
+    "buildProd": "ng build --base-href /blog/ --output-path=dist/production",
+    "buildDev": "ng build --base-href /blogDev/ --output-path=dist/dev",
+    "buildQA": "ng build --base-href /blogQA/ --output-path=dist/qa",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
